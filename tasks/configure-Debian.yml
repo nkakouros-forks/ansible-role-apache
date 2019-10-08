@@ -38,8 +38,8 @@
 
 - name: Enable Apache mod configs.
   file:
-    src: "{{ apache_server_root }}/mods-available/{{ item }}"
-    dest: "{{ apache_server_root }}mods-enabled/{{ item }}"
+    src: "{{ apache_server_root }}/mods-available/{{ item.key }}.conf"
+    dest: "{{ apache_server_root }}/mods-enabled/{{ item.key }}.conf"
     state: link
   notify: restart apache
   with_dict: "{{ apache_mods_config }}"
