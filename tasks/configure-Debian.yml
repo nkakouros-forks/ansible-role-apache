@@ -1,4 +1,4 @@
-  ---
+---
 - name: Configure Apache.
   lineinfile:
     dest: "{{ apache_server_root }}/ports.conf"
