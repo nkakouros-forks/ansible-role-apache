@@ -8,6 +8,14 @@
   with_items: "{{ apache_ports_configuration_items }}"
   notify: restart apache
 
+- name: Upload confs
+  copy:
+    content: "{{ conf.content }}"
+    dest: "{{ apache_server_root }}/conf-enabled/{{ conf.name }}.conf"
+  loop_control:
+    loop_var: conf
+  loop: "{{ apache_confs }}"
+
 - name: Enable Apache mods.
   file:
     src: "{{ apache_server_root }}/mods-available/{{ item }}"
